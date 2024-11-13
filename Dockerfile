@@ -18,4 +18,4 @@ ENV DEEPL_API_KEY=<your_deepl_api_key>
 
 
 # 运行应用程序
-CMD ["python", "main.py"]
+CMD ["python", "main_docker.py"]

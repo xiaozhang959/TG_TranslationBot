@@ -22,17 +22,13 @@ httpx_logger.setLevel(logging.WARNING)  # 将 httpx 的日志级别设置为 WAR
 apscheduler_logger = logging.getLogger("apscheduler.executors.default")
 apscheduler_logger.setLevel(logging.WARNING)  # 将日志级别设置为 WARNING 或更高
 
-# 开发环境调试，生产环境请改为使用环境变量使用替换为你的DeepL API URL
-DEEPL_API_URLS = [
-    "https://example.deeplx.com/translate",
-    "https://example.deeplx2.com/translate"
-]
-# 定义允许使用Bot的群聊ID
-ALLOWED_CHAT_IDS = ["群聊id1", "群聊id2"]  # 替换为你允许的群聊ID
-# 定义允许使用Bot的用户ID
-ALLOWED_USER_IDS = ["用户id1", "用户id2"]  # 替换为你自己的用户ID
-BOT_TOKEN = "1234567890:aaaaaaaaaaaaaa"  # BOT_TOKEN
-DELETE_TIME = 60 # 自动删除时间
+# 从环境变量中读取配置
+DEEPL_API_URLS = os.environ.get("DEEPL_API_URLS", "").split(",")
+ALLOWED_CHAT_IDS = list(map(int, os.environ.get("ALLOWED_CHAT_IDS", "").split(",")))
+ALLOWED_USER_IDS = list(map(int, os.environ.get("ALLOWED_USER_IDS", "").split(",")))
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
+# 将 DELETE_TIME 转换为整数
+DELETE_TIME = int(os.environ.get("DELETE_TIME", 60))
 
 # 轮询计数器
 current_api_index = 0
