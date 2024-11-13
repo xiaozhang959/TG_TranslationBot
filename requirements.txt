@@ -1,0 +1,12 @@
+
+# 请求模块
+Requests==2.32.3
+
+# 机器人bot的模块
+telegram~=0.0.1
+
+# TG bot第三方库
+python-telegram-bot==21.7
+
+#定时执行的模块
+python-telegram-bot[job-queue]
